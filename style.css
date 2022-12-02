@@ -1,0 +1,43 @@
+h1{
+  text-align: center ;
+  
+}
+.book{
+   display: flex;
+   flex-direction: row;
+   margin-top: 5%;
+}
+.book-catalog{
+   display: flex;
+   flex-direction: column;
+   
+}
+.book-author{
+
+}
+.book-title{
+   font-weight: bold;
+}
+.book-img{
+   width: 20%;
+   height:auto;
+   margin-left: 5%;
+}
+.book-catalog-rcolumn{
+   margin-left: 10%;
+}
+.book-desc{
+
+
+
+}
+.addToBag-btn{
+   color: white;
+   background-color: lightblue;
+   margin-top: 5%;
+   border-radius: 10px;
+
+}
+.book-form{
+
+}
