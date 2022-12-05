@@ -5,12 +5,21 @@ const ADD_TO_BAG_BTN_NAME = "Add to bag";
 const BOOK_CATALOG_HEADER = "Book Catalog";
 const HOST = window.location.origin+'/book-shop';
 const DESC_PAGE = "desc.html";
+const ADD_TO_BAG_STRING = "The item is added to cart";
+const MENU_ITEM_ABOUT = "About";
+const MENU_ITEM_CATALOG = "Catalog";
+const MENU_ITEM_CART = "Shopping cart";
 let url;
 let data;
 let author;
 let title;
 let price;
 let desc;
+let addButtonID;
+let divBookCatalog;
+let divBookCatalogImg = [];
+let divBookCatalogRColumn = [];
+let divBook = [];
 console.log(window.location.origin);
 /*async function doRequest(url, data) {
    let res = await fetch(url, {
@@ -34,30 +43,94 @@ console.log(window.location.origin);
    }
 }*/
 
+
+function AddToBag(event){
+
+   const buttonID = event.target;
+  
+   let cartItemCount  = localStorage.getItem(buttonID.id);
+   if (cartItemCount){
+      cartItemCount++;
+   localStorage.setItem(buttonID.id, cartItemCount);
+   console.log(localStorage.getItem(buttonID.id))
+   }else {
+      localStorage.setItem(buttonID.id, '1');
+      console.log(localStorage.getItem(buttonID.id))
+   }
+   alert(ADD_TO_BAG_STRING);
+   /*let fragment2 = document.createDocumentFragment();
+   let infoDiv = document.createElement('div');
+   infoDiv.className = "cart-add-info";
+   fragment2.append(infoDiv);
+   let cartAddInfoText = document.createElement('p');
+   cartAddInfoText.className = "cart-add-info-text";
+   cartAddInfoText.textContent = ADD_TO_BAG_STRING;
+   infoDiv.append(cartAddInfoText);
+   divBookCatalogRColumn[buttonID.id].append(fragment2);
+*/
+   
+}
+
 function showBookDescHandler(event){
 
    let newWin = window.open("desc.html", "Book Information", "width=200,height=200, popup=1");
    newWin.document.write("Hello, world!");
 }
 
+let fragment = document.createDocumentFragment();
+let header = document.createElement('header');
+fragment.append(header);
+let nav = document.createElement('nav');
+header.append(nav);
+headerUL = document.createElement('ul');
+headerUL.className = "main-menu";
+header.append(headerUL);
+
+headerLI1st = document.createElement('li');
+headerLI1st.className = "main_menu-first_element";
+headerUL.append(headerLI1st);
+
+headerLI1stLink = document.createElement('a');
+headerLI1stLink.textContent = MENU_ITEM_ABOUT;
+headerLI1stLink.href = "./index.html";
+headerLI1st.append(headerLI1stLink);
+
+headerLI = document.createElement('li');
+headerLI.className = "main_menu-element";
+headerUL.append(headerLI);
+
+headerLILink = document.createElement('a');
+headerLILink.textContent = MENU_ITEM_CATALOG;
+headerLILink.href = "./index.html";
+headerLI.append(headerLILink);
+
+headerLICart = document.createElement('li');
+headerLICart.className = "main_menu-cart";
+headerUL.append(headerLICart);
+
+headerLICartLink = document.createElement('a');
+headerLICartLink.textContent = MENU_ITEM_CART;
+headerLICartLink.href = "./cart.html";
+headerLICart.append(headerLICartLink);
+
 fetch(BOOKS_JSON) //path to the file with json data
         .then(response => response.json())
         .then(data => {
          console.log(data);
-         let fragment = document.createDocumentFragment();
+         
          let h1 = document.createElement('h1');
          h1.textContent = BOOK_CATALOG_HEADER;
          fragment.append(h1);
-         let divBookCatalog = document.createElement('div');
+         divBookCatalog = document.createElement('div');
          divBookCatalog.className = "book-catalog";
          
          fragment.append(divBookCatalog);
          
          let bookImg = [];
-          let divBook = [];
+        /*  let divBook = [];*/
          
-         let divBookCatalogImg = [];
-         let divBookCatalogRColumn = [];
+   /*      let divBookCatalogImg = [];
+         let divBookCatalogRColumn = [];*/
          let pBookAuthor = [];
          let pBookTitle = [];
          let pBookPrice = [];
@@ -125,11 +198,14 @@ fetch(BOOKS_JSON) //path to the file with json data
 
             bookFormBtn[i] = document.createElement('button');
             bookFormBtn[i].className = "addToBag-btn";
+            
+            bookFormBtn[i].id = i;
             bookFormBtn[i].form = bookFormName[i];
             bookFormBtn[i].name = "addToBag";
             bookFormBtn[i].value = "addToBag";
             bookFormBtn[i].formTarget = "frame";
             bookFormBtn[i].textContent = ADD_TO_BAG_BTN_NAME;
+            bookFormBtn[i].addEventListener("click", AddToBag);
             divBookCatalogRColumn[i].append(bookFormBtn[i]);
               } 
                

@@ -102,4 +102,42 @@ h2{
  margin-right: 5%;
 }
 
+.main-menu{
+   display: flex;
+   flex-direction: row;
+   background-color: lightblue;
+   min-height: 80px;
+
+}
+.main-menu ul{
+   margin-top: calc(80/2);
+}
+.main-main_menu-first_element{
+
+   margin-left: 5%;
+   list-style-type: none;  
+
+}
+.main_menu-element{
+   margin-left: 5%;
+   list-style-type: none;  
+}
+.main_menu-cart{
+   margin-right: 5%;
+   margin-left: auto;
+   list-style-type: none;  
+}
+.main_menu-first_element a,
+.main-menu-element a,
+.main_menu-cart a {
+    align-items: center;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 140%;
+   color: black;
+   width: 100%;
+}
+
 
