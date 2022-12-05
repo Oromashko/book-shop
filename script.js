@@ -2,14 +2,55 @@ const BOOKS_JSON = './books.json';
 const SHOW_MORE_LINK_TEXT = "Show more";
 const SHOW_MORE_LINK_TITLE = "Show more";
 const ADD_TO_BAG_BTN_NAME = "Add to bag";
+const BOOK_CATALOG_HEADER = "Book Catalog";
+const HOST = window.location.origin+'/book-shop';
+const DESC_PAGE = "desc.html";
+let url;
+let data;
+let author;
+let title;
+let price;
+let desc;
+console.log(window.location.origin);
+/*async function doRequest(url, data) {
+   let res = await fetch(url, {
+       method: 'POST',
+       headers: {
+           'Content-Type': 'application/json',
+       },
+       body: JSON.stringify(data),
+   });
+
+   if (res.ok) {
+
+       // let text = await res.text();
+       // return text;
+
+       let ret = await res.json();
+       return JSON.parse(ret.data);
+
+   } else {
+       return `HTTP error: ${res.status}`;
+   }
+}*/
+
+function showBookDescHandler(event){
+
+   let newWin = window.open("desc.html", "Book Information", "width=200,height=200, popup=1");
+   newWin.document.write("Hello, world!");
+}
+
 fetch(BOOKS_JSON) //path to the file with json data
         .then(response => response.json())
         .then(data => {
          console.log(data);
          let fragment = document.createDocumentFragment();
          let h1 = document.createElement('h1');
+         h1.textContent = BOOK_CATALOG_HEADER;
+         fragment.append(h1);
          let divBookCatalog = document.createElement('div');
          divBookCatalog.className = "book-catalog";
+         
          fragment.append(divBookCatalog);
          
          let bookImg = [];
@@ -26,6 +67,7 @@ fetch(BOOKS_JSON) //path to the file with json data
          bookFormName = [];
          
          for (i=0; i<data.length; i++){
+            console.log("i=",i);
             divBook[i] = document.createElement('div');
             divBook[i].className="book"; 
             divBookCatalogImg[i] = document.createElement('img');
@@ -55,11 +97,25 @@ fetch(BOOKS_JSON) //path to the file with json data
 
             pBookDesc[i] = document.createElement('a');
             pBookDesc[i].className = "book-desc";
-            pBookDesc[i].href = data[i].href;
+            
+            url = HOST+"/"+DESC_PAGE+"?"+"book="+i;
+            /*author = "\'"+"author"+"\'"+": "+pBookAuthor[i].textContent;
+            
+            title = "\'"+"title"+"\'"+": "+pBookTitle[i].textContent;
+            price = "\'"+"price"+"\'"+": "+pBookPrice[i].textContent;
+            desc = "\'"+"description"+"\'"+": "+pBookDesc[i].textContent;
+            
+            data = new Array(author, title, price, desc);
+            */
+            
+            /*pBookDesc[i].href = HOST+"/"+DESC_PAGE+"?"+"author="+pBookAuthor[i].textContent+"&title="+pBookTitle[i].textContent+"&price="+pBookPrice[i].textContent+"&description="+pBookDesc[i].textContent;*/
+            pBookDesc[i].href = url;
+            
             pBookDesc[i].title = SHOW_MORE_LINK_TITLE;
             pBookDesc[i].textContent = SHOW_MORE_LINK_TEXT;
             divBookCatalogRColumn[i].append(pBookDesc[i]);
-        // TODO popup window with book description
+           // pBookDesc[i].addEventListener("click", showBookDescHandler);
+            // TODO popup window with book description
 
             bookForm[i] = document.createElement('form');
             bookForm[i].className = "book-form";

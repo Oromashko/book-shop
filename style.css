@@ -1,5 +1,6 @@
 h1{
   text-align: center ;
+  margin-top: 5%;
   
 }
 .book{
@@ -31,13 +32,74 @@ h1{
 
 
 }
-.addToBag-btn{
+.addToBag-btn, #submit-btn{
    color: white;
    background-color: lightblue;
-   margin-top: 5%;
+   margin-top: 3%;
    border-radius: 10px;
+   width: 100px;
+   font-size: medium;
+   border-color: lightblue;
 
 }
 .book-form{
 
 }
+.delivery-form{
+margin-left: 5%;
+display: flex;
+flex-direction: column;
+}
+.delivery-form-part{
+  /* margin-top: 1%;*/
+ 
+  margin-bottom: 0px;
+}
+h2{
+   font-weight: bold;
+}
+#delivery-adress{
+   display: flex;
+   flex-direction: column;
+   width: 30%;
+   
+}
+#house, #flat, #date {
+   width: 20%;
+   
+}
+.delivery-form-item{
+   margin-top: 2%;
+}
+#name, #surname, #street{
+   width: 100%;
+   min-width: 100px;
+}
+#payment-options{
+   display: flex;
+   flex-direction: column;
+   
+}
+.payment-option{
+   display: flex;
+   flex-direction: row;
+   margin-top: 1%;
+}
+#gift-options{
+   display: flex;
+   flex-direction: column;
+}
+.gift-option{
+   display: flex;
+   flex-direction: row;
+   margin-top: 1%;
+}
+
+.book-desc{
+   /*width: 70%;*/
+ text-align: center;
+ margin-left: 5%;
+ margin-right: 5%;
+}
+
+

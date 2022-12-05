@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Delivery Information</title>
+   <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+   <h1>Delivery Information</h1>
+   <form class ="delivery-form" name="delivery-form" action="">
+      <h2 class="delivery-form-part">Delivery address:</h2>
+      <div id="delivery-adress">
+         <label class="delivery-form-item" for="name">Name</label>
+         <input type="text" id="name" value="Name" minlength="4" pattern="\S+" required>
+         <label class="delivery-form-item" for="surname">Surname</label>
+         <input type="text" id="surname" value="Surname" minlength="5" pattern="\S+" required>
+         <label class="delivery-form-item" for="date">Delivery date</label>
+         <input type="date" id="date" required>
+         <label class="delivery-form-item" for="date">Street</label>
+         <input type="text" id="street" value="Street" minlength="5" pattern="\w+" required>
+         <label class="delivery-form-item" for="house">House number</label>
+         <input type="text" id="house" value="" pattern="\d+" required>
+         <label class="delivery-form-item" for="house">Flat number</label>
+         <input type="text" id="flat" value="" pattern="\d[-\d]*" required>
+      </div>
+      <h2 class="delivery-form-part">Payment type:</h2>
+      <div id="payment-options">
+         <div class="payment-option">
+            <label id="cash-label" for="cash">cash</label>
+            <input type="radio" name="payment" id="cash" value="cash" checked>
+         </div>
+         <div class="payment-option">
+            <label id="card-label" for="card">card</label>
+            <input type="radio" name="payment" id="card" value="card" >
+         </div>
+      </div>
+      <h2 class="delivery-form-part">Choose 2 gifts:</h2>
+      <div  id="gift-options">
+         <div class="gift-option">
+            <label for="packAsGift">pack as a gift</label>
+            <input type="radio" name="gift" id="packAsGift" value="packAsGift" >
+         </div>
+         <div class="gift-option">
+            <label for="addPostcard">add postcard</label>
+            <input type="radio" name="gift" id="addPostcard" value="addPostcard" >
+         </div>
+         <div class="gift-option">
+            <label for="discount">provide 2% discount to the next time</label>
+            <input type="radio" name="gift" id="discount" value="discount" >
+         </div>
+         <div class="gift-option">
+            <label for="penPencil">branded pen or pencil</label>
+            <input type="radio" name="gift" id="penPencil" value="penPencil" >
+         </div>
+      </div>
+      <input id="submit-btn" type="submit" value="Submit" />
+   </form>
+</body>  
+</html>
