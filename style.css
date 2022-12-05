@@ -1,5 +1,5 @@
 body{
-   width: 1600px;
+   width: 100%;
    /*height: 4975px;*/
    background: #FFFFFF;
    position:relative;
@@ -41,7 +41,7 @@ h1{
 
 
 }
-.addToBag-btn, #submit-btn{
+.addToBag-btn, #submit-btn, #checkout-btn{
    color: white;
    background-color: lightblue;
    margin-top: 3%;
@@ -148,6 +148,23 @@ h2{
    line-height: 140%;
    color: black;
    width: 100%;
+}
+#cart-wrapper{
+   display: flex;
+   flex-direction: column;
+   margin-left: 5%;
+}
+.cart-item{
+   display: flex;
+   flex-direction: row;
+}
+.cart-item-title{
+   
+}
+.cart-item-count{
+   margin-right: 50%;
+   margin-left: auto;
+
 }
 
 
