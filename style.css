@@ -13,6 +13,10 @@ h1{
   margin-top: 5%;
   
 }
+header {
+   position: sticky;
+   top: 0;
+}
 .book{
    display: flex;
    flex-direction: row;
@@ -24,18 +28,23 @@ h1{
    
 }
 .book-author{
-
+   cursor: pointer;
 }
 .book-title{
    font-weight: bold;
+   cursor: pointer;
 }
 .book-img{
    width: 20%;
    height:auto;
    margin-left: 5%;
+   cursor: pointer;
 }
 .book-catalog-rcolumn{
    margin-left: 10%;
+}
+.book-price{
+   cursor: pointer;
 }
 .book-desc{
 

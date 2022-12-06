@@ -1,7 +1,7 @@
 const SHOPPING_CART_HEADER = "Shopping cart";
-const BOOKS_JSON = './books.json';
+
 const CHECKOUT_BTN_NAME = "Checkout";
-let itemCount;
+/*let itemCount;*/
 let keyNum;
 let cartWrapper;
 let cartItem;
