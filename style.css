@@ -160,13 +160,18 @@ h2{
    width: 100%;
 }
 #cart-wrapper{
-   display: flex;
-   flex-direction: column;
+   display: grid;
+   grid-template-columns: 40% 20% 20% 20%;
+  
+   grid-row-gap: 1%;
+   grid-column-gap: 1%;
    margin-left: 5%;
+   
 }
 .cart-item{
    display: flex;
    flex-direction: row;
+  
 }
 .cart-item-title{
    
@@ -176,5 +181,34 @@ h2{
    margin-left: auto;
 
 }
+.cart-item-price{
+   margin-right: 30%;
+   margin-left: auto;
+}
+.cart-item-total-price{
+   margin-right: 20%;
+   margin-left: auto;
+}
+#total-items-price, 
+#total-title, 
+#total-items-count{
 
+   font-size: large;
+   font-weight: 700;
+}
+.total-wrapper{
+   display: flex;
+   flex-direction: row;
 
+}
+#checkout-btn{
+   margin-left: 40%;
+}
+#cart-item-title-header, 
+#cart-item-count-header,
+#cart-item-price-header,
+#cart-item-total-price-header{
+
+   font-size: larger;
+   font-weight: 700;
+}

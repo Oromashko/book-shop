@@ -3,14 +3,19 @@ const MENU_ITEM_CATALOG = "Catalog";
 const MENU_ITEM_CART = "Shopping cart";
 const ITEMS_COUNT = "items_count";
 const BOOKS_JSON = './books.json';
+const TOTAL_TITLE = 'Total:';
 
+const HEADER_BOOK_TITLE = 'Book title';
+const HEADER_ITEM_COUNT = 'Count';
+const HEADER_PRICE = 'Price ($)';
+const HEADER_TOTAL_PRICE = 'Total price ($)';
 var itemCount = 0;
 var headerLICartLink;
 var headerLICart;
 var fragment;
 let iCountSuccess;
 
-function getItemCount() {
+function getItemsCount() {
    let iCount = 0;
    let key;
    
@@ -35,6 +40,62 @@ function getItemCount() {
       return iCount;
 
    
+}
+
+async function getItemsPrice(){
+// Get total price of all the items
+   let prices = Array();
+   let counts = Array();
+   let price;
+   let keyNum;
+   let total = 0;
+   let key;
+   
+   let response1  = await fetch(BOOKS_JSON);
+   let data = await response1.json();
+   //let response = fetch(BOOKS_JSON) //path to the file with json data
+    //  .then(response => response.json())
+    //  .then(data => {
+   return new Promise(function(resolve, reject) {  
+      for (let i=0; i<data.length; i++){
+            price = data[i].price;
+            for(let j=0; j<localStorage.length; j++){
+               key = localStorage.key(j);
+               keyNum = Number(key);
+               if (i==keyNum){
+                  count = Number(localStorage.getItem(j));
+                  total = total+count*price;
+               }
+            }
+         } 
+         console.log(`total=${total}`);
+         
+     // });
+      
+     
+      resolve(total);
+     })
+     
+   }
+
+async function getItemPrice(itemNum){
+   // get price of itemNum item
+   let itemCurrentNum;
+   let response1  = await fetch(BOOKS_JSON); //path to the file with json data
+   let data  = await response1.json();     
+   return new Promise(function(resolve, reject){ 
+         for (let i=0; i<data.length; i++){
+            itemNum = Number(itemNum);
+
+            if(itemNum == i){
+               console.log(`i=${i}`);
+               console.log(`data[i].price=${data[i].price}`);
+               resolve(data[i].price);
+            } 
+         };
+         reject(0);
+   })
+      
 }
 
 function allowDrop(event)
@@ -68,7 +129,7 @@ function drop(event)
    localStorage.setItem(ITEMS_COUNT,'0');
    itemCount = 0;
    }
-  headerLICartLink1.textContent = MENU_ITEM_CART+" ("+itemCount+" items)";
+  headerLICartLink1.textContent = MENU_ITEM_CART+" ("+itemCount+")";
    headerLICartLink1.href = "./cart.html";
    headerLICartLink1.addEventListener("drop", drop);
    headerLICartLink1.addEventListener("dragover", allowDrop);
@@ -101,9 +162,9 @@ function drop(event)
  document.getElementById('itemcount').innerHTML = (itemCount+" Items");
   $selectedElement.innerHTML += "<i class='icon-remove' data-item="+data+"></i>"; */
 }
-let iCount1 = getItemCount()
+let iCount1 = getItemsCount()
 console.log(`Count = ${iCount1}`);
-iCountSuccess = localStorage.setItem(ITEMS_COUNT, getItemCount());
+iCountSuccess = localStorage.setItem(ITEMS_COUNT, getItemsCount());
 fragment = document.createDocumentFragment();
 let header = document.createElement('header');
 fragment.append(header);
